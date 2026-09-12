@@ -202,30 +202,123 @@ main {
     color: #666; 
 } 
 
+/* Side-by-side grid with reduced image height */
 .gallery-grid { 
     display: grid; 
-    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); 
-    gap: 1.5rem; 
+    grid-template-columns: repeat(2, 1fr); /* 2 side-by-side on mobile */
+    gap: 1.25rem; 
 } 
 
+@media (min-width: 900px) {
+    .gallery-grid {
+        grid-template-columns: repeat(3, 1fr); /* 3 side-by-side on desktop */
+    }
+}
+
 .gallery-item { 
-    height: 500px; 
+    height: 260px; /* Reduced fixed height */
     overflow: hidden; 
     border-radius: 6px; 
+    cursor: pointer;
 } 
 
 .gallery-item img { 
     width: 100%; 
     height: 100%; 
     object-fit: cover; 
-    
-    transition: all 0.4s ease; 
+    transition: transform 0.3s ease, filter 0.3s ease; 
+    display: block;
 } 
 
 .gallery-item:hover img { 
-    
     transform: scale(1.03); 
 } 
+
+/* Lightbox Modal Styling */
+.lightbox {
+    display: none;
+    position: fixed;
+    z-index: 1000;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.92);
+    justify-content: center;
+    align-items: center;
+    backdrop-filter: blur(5px);
+}
+
+.lightbox-content {
+    max-width: 85%;
+    max-height: 85vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.lightbox-content img {
+    max-width: 100%;
+    max-height: 85vh;
+    object-fit: contain;
+    border-radius: 6px;
+    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
+}
+
+/* Close Button (Finer X at Top Right) */
+.close-btn {
+    position: absolute;
+    top: 25px;
+    right: 35px;
+    color: #FFFFFF;
+    font-size: 2rem;
+    font-weight: 300;
+    cursor: pointer;
+    line-height: 1;
+    width: 44px;
+    height: 44px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 50%;
+    background: rgba(255, 255, 255, 0.1);
+    transition: background 0.2s ease, transform 0.2s ease;
+}
+
+.close-btn:hover {
+    background: rgba(255, 255, 255, 0.25);
+    transform: scale(1.05);
+}
+
+/* Left & Right Navigation Arrows */
+.prev-btn, .next-btn {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    background: rgba(255, 255, 255, 0.12);
+    color: #FFFFFF;
+    border: none;
+    font-size: 1.5rem;
+    padding: 1rem 1.2rem;
+    cursor: pointer;
+    border-radius: 50%;
+    transition: background 0.2s ease, transform 0.2s ease;
+    user-select: none;
+}
+
+.prev-btn:hover, .next-btn:hover {
+    background: rgba(255, 255, 255, 0.3);
+    transform: translateY(-50%) scale(1.1);
+}
+
+.prev-btn { left: 25px; }
+.next-btn { right: 25px; }
+
+@media (max-width: 600px) {
+    .prev-btn { left: 10px; }
+    .next-btn { right: 10px; }
+}
+
 
 /* About Page */ 
 .about-section { 
