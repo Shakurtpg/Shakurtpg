@@ -133,18 +133,7 @@ main {
     border-color: #000000; 
 } 
 
-.hero-image { 
-    flex: 1; 
-    height: 500px; 
-} 
 
-.hero-image img { 
-    width: 80%; 
-    height: 100%; 
-    
-    border-radius: 8px; 
-   transition: filter 0.4s ease; 
-} 
 
 
 
