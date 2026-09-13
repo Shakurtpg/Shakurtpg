@@ -542,4 +542,20 @@ footer {
     } 
 }
 
+img {
+    /* Prevent image selection */
+    -webkit-user-select: none;
+    -khtml-user-select: none;
+    -moz-user-select: none;
+    -o-user-select: none;
+    user-select: none;
+
+    /* Prevent mobile long-press popup (iOS & Android) */
+    -webkit-touch-callout: none;
+    
+    /* Prevent dragging */
+    -webkit-user-drag: none;
+    user-drag: none;
+    pointer-events: auto; /* Keeps clicks active for your lightbox */
+}
 
